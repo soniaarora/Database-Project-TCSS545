@@ -1,9 +1,10 @@
-package college.dbProject;
+package college.dbProject.main;
 
+
+import college.dbProject.admin.admin;
 
 import java.awt.EventQueue;
 
-import javax.sound.midi.Soundbank;
 import javax.swing.JFrame;
 
 import java.awt.Font;
@@ -11,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
@@ -21,32 +21,19 @@ import javax.swing.JComboBox;
 
 import java.awt.Color;
 
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.DefaultCellEditor;
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.ImageIcon;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Random;
+
+import static college.dbProject.Connection.connection.connectionToMySQL;
 
 
 public class college_system {
@@ -104,7 +91,7 @@ public class college_system {
     public static JFrame frame = new JFrame("College Management System");
 
     public static void main(String[] args) {
-        connectionToMySQL();
+        conn = connectionToMySQL();
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -124,8 +111,6 @@ public class college_system {
 
     private void initialize() {
 
-        final int screenHeight = SCREEN_SIZE.height;
-        final int screenWidth = SCREEN_SIZE.width;
 
         frame.setIconImage(new ImageIcon("images/").getImage());
 //        frame.setResizable(false);
@@ -178,7 +163,7 @@ public class college_system {
 
                try {
                    Statement stmt = conn.createStatement();
-                   System.out.print(stmt);
+
                  ResultSet RS = stmt.executeQuery(authenticationPswrd);
 
                  while(RS.next()) {
@@ -186,8 +171,24 @@ public class college_system {
                      String pwd = RS.getString("Password");
                      if (pswrd.equals(pwd) ){
 
-                         JOptionPane.showMessageDialog(frame, "Login Successful");
-                         String movePage = roleSelected + "()";
+                       JOptionPane.showMessageDialog(frame, "Login Successful");
+                         if(roleSelected == "admin"){
+                           admin ad = new admin();
+                           frame.setVisible(false);
+                           ad.adm.setVisible(true);
+                           //ad.setVisible(true);
+                             //admin.main(null);
+
+                         }
+                         if(roleSelected == "student"){
+
+                         }
+
+                         if(roleSelected == "faculty"){
+
+
+                         }
+
 //
                      } else {
 
@@ -203,39 +204,6 @@ public class college_system {
 
     }
 
-    /** Connect to MySQL driver. */
-    public static void connection() {
-        try {
-//            Class.forName("jdbc:mysql://localhost:3306/collegedb?autoReconnect=true&useSSL=false", "root", "root");
-        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
-    }
-    /** Connect to MySQL database. */
-    public static void connectionToMySQL() {
-        connection();
-        String host = "jdbc:mysql://localhost:3306/collegedb";
-        String username = "root";
-        String password = "root";
-        try {
-            //connect = DriverManager.getConnection(host, username, password);
-            conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost/collegedb?" +
-                            "user=root&password=root");
-
-            // Do something with the Connection
-        } catch (SQLException ex) {
-            // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
-        }
-    }
 
     /**
      * This is a helper method that retrieves the background image file.
@@ -266,8 +234,8 @@ public class college_system {
         JTextField label = new JTextField();
 
         label.setForeground(Color.BLACK);
-        label.setFont(new Font("Serif", Font.CENTER_BASELINE, 15));
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT ,18));
+        label.setHorizontalAlignment(JLabel.HORIZONTAL);
         label.setBounds(x, y, dx, dy);
         frame.add(label);
 
@@ -278,7 +246,7 @@ public class college_system {
         JButton label = new JButton(labelText);
 
         label.setForeground(Color.BLACK);
-        label.setFont(new Font("Serif", Font.CENTER_BASELINE, 20));
+        label.setFont(new Font("Serif", Font.BOLD, 20));
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setBounds(x, y, dx, dy);
         frame.add(label);
