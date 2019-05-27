@@ -5,6 +5,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -53,7 +55,7 @@ public class admin extends JFrame {
      */
     public static final int SPACING_150 = 150;
 
-    public static Connection conn = null;
+//    public static Connection conn = null;
     public static JFrame adm = new JFrame("Admin screen");
 
     public admin() {
@@ -62,7 +64,7 @@ public class admin extends JFrame {
 
     public static void main(String[] args) {
 
-        conn = connectionToMySQL();
+//        conn = connectionToMySQL();
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -86,12 +88,29 @@ public class admin extends JFrame {
 
 
         adm.setLayout(null);
-        JButton forFaculty = makeNewJButton("Faculty Data", 400, 200, 150, 50);
-        JButton forStudent = makeNewJButton("Student Data", 400, 300, 150, 50);
+        JButton forFaculty = makeNewJButton("Faculty Portal", 400, 200, 250, 50);
+        JButton forStudent = makeNewJButton("Student Portal", 400, 300, 250, 50);
+        forFaculty.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AdminFaculty adFac = new AdminFaculty();
+                adm.setVisible(false);
+                adFac.forFaculty.setVisible(true);
+            }
+        });
+
+        forStudent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                StudentAdmin stuAd = new StudentAdmin();
+                adm.setVisible(false);
+                stuAd.forStudent.setVisible(true);
+            }
+        });
     }
 
-
-    public static JButton makeNewJButton (String labelText ,int x, int y, int dx, int dy) {
+    public static JButton makeNewJButton(String labelText ,int x, int y, int dx, int dy) {
         JButton label = new JButton(labelText);
 
         label.setForeground(Color.BLACK);

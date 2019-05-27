@@ -5,7 +5,7 @@ import college.dbProject.admin.admin;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,15 +17,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JComboBox;
 
 import java.awt.Color;
-
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JTextField;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -129,7 +122,7 @@ public class college_system {
         makeNewJLabel("Password", 250, 320, 160, 25);
         makeNewJLabel("Login As", 250, 390, 160, 35);
         JTextField uname = makeNewJTextField(450, 250, 160, 25);
-        JTextField pass = makeNewJTextField(450, 320, 160, 25);
+        JPasswordField pass = makeNewJPass(450, 320, 160, 25);
 
         JButton login = makeNewJButton("LOGIN",480, 500, 120,50 );
 
@@ -244,6 +237,17 @@ public class college_system {
 
     public static JButton makeNewJButton (String labelText ,int x, int y, int dx, int dy) {
         JButton label = new JButton(labelText);
+
+        label.setForeground(Color.BLACK);
+        label.setFont(new Font("Serif", Font.BOLD, 20));
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setBounds(x, y, dx, dy);
+        frame.add(label);
+        return label;
+    }
+
+    public static JPasswordField makeNewJPass(int x, int y, int dx, int dy) {
+        JPasswordField label = new JPasswordField();
 
         label.setForeground(Color.BLACK);
         label.setFont(new Font("Serif", Font.BOLD, 20));
