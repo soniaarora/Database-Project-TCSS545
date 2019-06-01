@@ -2,28 +2,23 @@ package college.dbProject.main;
 
 
 import college.dbProject.admin.admin;
+import college.dbProject.student.FacultyPage;
+import college.dbProject.student.Student;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.*;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import java.awt.Color;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import static college.dbProject.Connection.connection.connectionToMySQL;
@@ -105,18 +100,25 @@ public class college_system {
     private void initialize() {
 
 
-        frame.setIconImage(new ImageIcon("images/").getImage());
-//        frame.setResizable(false);
-        frame.setSize(200,200);
-          frame.setBounds(0, 0, 1000, 625);
-        frame.setLocationByPlatform(true);
+//        frame.setIconImage(new ImageIcon("images/").getImage());
+////        frame.setResizable(false);
+//        frame.setSize(200,200);
+//          frame.setBounds(0, 0, 1000, 625);
+//        frame.setLocationByPlatform(true);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//        //adds Background Image to the JFrame
+////       frame.setContentPane(new BackgroundPanel(readImageFile()));
+//
+//        //set the layout for the frame
+//        frame.setLayout(null);
+
+
+        frame.setSize(200, 200);
+        frame.setBounds(0, 0, 1000, 625);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //adds Background Image to the JFrame
-//       frame.setContentPane(new BackgroundPanel(readImageFile()));
-
-        //set the layout for the frame
-        frame.setLayout(null);
+        frame.getContentPane().setLayout(null);
+        setBackgroundImage();
         makeNewJLabel("College Management System ", 100, 80, 1000, 50);
         makeNewJLabel("Username", 250, 250, 160, 25);
         makeNewJLabel("Password", 250, 320, 160, 25);
@@ -174,12 +176,26 @@ public class college_system {
 
                          }
                          if(roleSelected == "student"){
-
+                             int count = 0;
+                             String query = "select count(*) from Student where ID="+Id+";";
+                             Statement stmnt = conn.createStatement();
+                             ResultSet rs = stmnt.executeQuery(query);
+                             while (rs.next())
+                                 count = rs.getInt(1);
+                             if (count == 1) {
+                                 JOptionPane.showMessageDialog(frame, "Login Successful");
+                                 frame.setVisible(false);
+                                 Student student = new Student(conn, Integer.valueOf(Id));
+                                 student.initialize();
+                             } else {
+                                 JOptionPane.showMessageDialog(frame, "Please contact admin to register as student!");
+                             }
                          }
 
-                         if(roleSelected == "faculty"){
-
-
+                          if(roleSelected == "faculty"){
+                             FacultyPage facultyPage = new FacultyPage(Id, conn);
+                             frame.setVisible(false);
+                             facultyPage.frame.setVisible(true);
                          }
 
 //
@@ -256,4 +272,17 @@ public class college_system {
         frame.add(label);
         return label;
     }
+
+    private static void setBackgroundImage() {
+        try {
+            String relativePath = "images\\wallpaper.jpg";
+            String absolutePath = new File(relativePath).getAbsolutePath();
+            Image image = new ImageIcon(ImageIO.read(new File(absolutePath))).getImage();
+            ImageIcon scaledIcon = new ImageIcon(image.getScaledInstance(1000, 625, Image.SCALE_FAST));
+            frame.setContentPane(new JLabel(scaledIcon));
+        } catch (IOException e2) {
+            e2.printStackTrace();
+        }
+    }
+
 }

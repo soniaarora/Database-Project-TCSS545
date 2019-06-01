@@ -3,10 +3,13 @@ package college.dbProject.admin;
 
 import java.awt.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -79,15 +82,21 @@ public class admin extends JFrame {
 
     private void initialize() {
 
-        final int screenHeight = SCREEN_SIZE.height;
-        final int screenWidth = SCREEN_SIZE.width;
+//        final int screenHeight = SCREEN_SIZE.height;
+//        final int screenWidth = SCREEN_SIZE.width;
+//        adm.setSize(200, 200);
+//        adm.setBounds(0, 0, 1000, 625);
+//        adm.setLocationByPlatform(true);
+//        adm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//
+//        adm.setLayout(null);
+
         adm.setSize(200, 200);
         adm.setBounds(0, 0, 1000, 625);
-        adm.setLocationByPlatform(true);
         adm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-        adm.setLayout(null);
+        adm.getContentPane().setLayout(null);
+        setBackgroundImage();
         JButton forFaculty = makeNewJButton("Faculty Portal", 400, 200, 250, 50);
         JButton forStudent = makeNewJButton("Student Portal", 400, 300, 250, 50);
         forFaculty.addActionListener(new ActionListener() {
@@ -121,5 +130,16 @@ public class admin extends JFrame {
         return label;
     }
 
+    private static void setBackgroundImage() {
+        try {
+            String relativePath = "images\\wallpaper.jpg";
+            String absolutePath = new File(relativePath).getAbsolutePath();
+            Image image = new ImageIcon(ImageIO.read(new File(absolutePath))).getImage();
+            ImageIcon scaledIcon = new ImageIcon(image.getScaledInstance(1000, 625, Image.SCALE_FAST));
+            adm.setContentPane(new JLabel(scaledIcon));
+        } catch (IOException e2) {
+            e2.printStackTrace();
+        }
+    }
 
 }

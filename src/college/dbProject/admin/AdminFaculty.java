@@ -2,17 +2,23 @@ package college.dbProject.admin;
 
 
 
+import college.dbProject.main.BackgroundPanel;
 import college.dbProject.main.college_system;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import static college.dbProject.Connection.connection.connectionToMySQL;
 
@@ -82,12 +88,12 @@ public class AdminFaculty {
 
         final int screenHeight = SCREEN_SIZE.height;
         final int screenWidth = SCREEN_SIZE.width;
+
         forFaculty.setSize(200, 200);
         forFaculty.setBounds(0, 0, 1000, 625);
-        forFaculty.setLocationByPlatform(true);
         forFaculty.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        forFaculty.setLayout(null);
-
+        forFaculty.getContentPane().setLayout(null);
+        setBackgroundImage();
 
         makeNewJLabel("ID Number", 220, 100, 200, 50);
         makeNewJLabel("First Name", 220, 170, 200, 50);
@@ -109,13 +115,13 @@ public class AdminFaculty {
                 String Fname = fname.getText();
                 String Lname = lname.getText();
                 String Email = email.getText();
+                String pswrd = Fname;
+                String query1 = "INSERT INTO credentials VALUES ( " + id + ", '" + pswrd + "');";
+                String query2 = "INSERT INTO faculty VALUES ( " + id + ", '" + Fname + "', '" + Lname + "', '" + Email + "');";
 
 
-                String query1 = "INSERT INTO faculty VALUES ( " + id + ", '" + Fname + "', '" + Lname + "', '" + Email + "');";
 
-                String pswrd = generatePassword();
 
-                String query2 = "INSERT INTO credentials VALUES ( " + id + ", '" + pswrd + "');";
 
                 try {
                     connection = connectionToMySQL();
@@ -148,9 +154,17 @@ public class AdminFaculty {
     }
 
     public static String generatePassword() {
-        byte[] array = new byte[7]; // length is bounded by 7
-        new Random().nextBytes(array);
-        String generatedString = new String(array, Charset.forName("UTF-8"));
+//        byte[] array = new byte[7]; // length is bounded by 7
+//        new Random().nextBytes(array);
+//        String generatedString = new String(array, Charset.forName("UTF-8"));
+
+        int length = 8;
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "abcdefghijklmnopqrstuvwxyz"
+                + "0123456789";
+        String generatedString = new Random().ints(length, 0, chars.length())
+                .mapToObj(i -> "" + chars.charAt(i))
+                .collect(Collectors.joining());
 
         return generatedString;
     }
@@ -190,6 +204,26 @@ public class AdminFaculty {
         return label;
     }
 
+    public static BufferedImage readImageFile() {
+        BufferedImage background = new BufferedImage(1, 1, 1);
+        try {
+            background = ImageIO.read(new File("images/wallpaper.jpg"));
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
+        return background;
+    }
 
+    private static void setBackgroundImage() {
+        try {
+            String relativePath = "images\\wallpaper.jpg";
+            String absolutePath = new File(relativePath).getAbsolutePath();
+            Image image = new ImageIcon(ImageIO.read(new File(absolutePath))).getImage();
+            ImageIcon scaledIcon = new ImageIcon(image.getScaledInstance(1000, 625, Image.SCALE_FAST));
+            forFaculty.setContentPane(new JLabel(scaledIcon));
+        } catch (IOException e2) {
+            e2.printStackTrace();
+        }
+    }
 
 }

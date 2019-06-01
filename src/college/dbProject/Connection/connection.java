@@ -23,13 +23,13 @@ public class connection {
     /** Connect to MySQL database. */
     public static Connection connectionToMySQL() {
         connection();
-        String host = "jdbc:mysql://localhost:3306/collegedb";
+        String host = "jdbc:mysql://localhost:3306/collegemanagementsystemdb?";
         String username = "root";
         String password = "root";
         try {
             //connect = DriverManager.getConnection(host, username, password);
             conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost/collegedb?" +
+                    DriverManager.getConnection("jdbc:mysql://localhost:3306/collegemanagementsystemdb?" +
                             "user=root&password=root");
 
             // Do something with the Connection
