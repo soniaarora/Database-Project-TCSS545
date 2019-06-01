@@ -107,9 +107,9 @@ public class StudentAdmin {
                 String Email = email.getText();
                 String pswrd = Fname;
 
-                String query1 = "INSERT INTO credentials VALUES ( " + id + ", '" + pswrd + "');";
+                String query1 = "INSERT INTO Credentials VALUES ( " + id + ", '" + pswrd + "');";
 
-                String query2 = "INSERT INTO student VALUES ( " + id + ", '" + Fname + "', '" + Lname + "', '" + Add + "','" + Email + "');";
+                String query2 = "INSERT INTO Student VALUES ( " + id + ", '" + Fname + "', '" + Lname + "', '" + Add + "','" + Email + "');";
 
 
 

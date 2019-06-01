@@ -116,8 +116,8 @@ public class AdminFaculty {
                 String Lname = lname.getText();
                 String Email = email.getText();
                 String pswrd = Fname;
-                String query1 = "INSERT INTO credentials VALUES ( " + id + ", '" + pswrd + "');";
-                String query2 = "INSERT INTO faculty VALUES ( " + id + ", '" + Fname + "', '" + Lname + "', '" + Email + "');";
+                String query1 = "INSERT INTO Credentials VALUES ( " + id + ", '" + pswrd + "');";
+                String query2 = "INSERT INTO Faculty VALUES ( " + id + ", '" + Fname + "', '" + Lname + "', '" + Email + "');";
 
 
 
