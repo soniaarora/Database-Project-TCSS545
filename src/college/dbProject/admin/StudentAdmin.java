@@ -92,8 +92,10 @@ public class StudentAdmin {
         JTextField add = makeNewJTextField(460, 310, 200, 30);
         JTextField email = makeNewJTextField(460, 380, 200, 30);
 
-        JButton  submit = makeNewJButton("Submit", 380,460, 100, 30 );
-        JButton cancel = makeNewJButton("Cancel", 500, 460, 100, 30);
+        JButton  submit = makeNewJButton("Submit", 310,440, 100, 30 );
+        JButton delete = makeNewJButton("Delete", 450, 440, 100, 30);
+        JButton cancel = makeNewJButton("Cancel", 580, 440, 100, 30);
+
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -117,7 +119,7 @@ public class StudentAdmin {
                     Statement stmt = connection.createStatement();
                     stmt.execute(query1);
                     stmt.execute(query2);
-
+                    JOptionPane.showMessageDialog(forStudent, "Profile successfully created for "+ Fname +"");
                     forStudent.setVisible(false);
 
                     admin = new admin();
@@ -141,6 +143,35 @@ public class StudentAdmin {
                 coll.adm.setVisible(true);
 
             }
+        });
+
+        delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String textid = Id.getText();
+                String query1 = "DELETE FROM Credentials where ID = "+textid +"; ";
+                String query2 =  "DELETE FROM Student where ID = "+textid+";";
+
+                try {
+                    connection = connectionToMySQL();
+                    Statement stmt = connection.createStatement();
+                    stmt.execute(query1);
+                    stmt.execute(query2);
+
+                    JOptionPane.showMessageDialog(forStudent, "Profile successfully deleted");
+
+                    forStudent.setVisible(false);
+                    admin = new admin();
+                    admin.adm.setVisible(true);
+                    connection.close();
+
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+
         });
 
     }
@@ -175,8 +206,8 @@ public class StudentAdmin {
         JTextField label = new JTextField();
 
         label.setForeground(Color.BLACK);
-        label.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT ,18));
-        label.setHorizontalAlignment(JLabel.HORIZONTAL);
+        label.setFont(new Font("Serif", Font.PLAIN ,18));
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setBounds(x, y, dx, dy);
         forStudent.add(label);
 

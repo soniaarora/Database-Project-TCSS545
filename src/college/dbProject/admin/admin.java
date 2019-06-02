@@ -82,16 +82,6 @@ public class admin extends JFrame {
 
     private void initialize() {
 
-//        final int screenHeight = SCREEN_SIZE.height;
-//        final int screenWidth = SCREEN_SIZE.width;
-//        adm.setSize(200, 200);
-//        adm.setBounds(0, 0, 1000, 625);
-//        adm.setLocationByPlatform(true);
-//        adm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//
-//        adm.setLayout(null);
-
         adm.setSize(200, 200);
         adm.setBounds(0, 0, 1000, 625);
         adm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,6 +89,7 @@ public class admin extends JFrame {
         setBackgroundImage();
         JButton forFaculty = makeNewJButton("Faculty Portal", 400, 200, 250, 50);
         JButton forStudent = makeNewJButton("Student Portal", 400, 300, 250, 50);
+//        JButton deleteId = makeNewJButton("Delete Profile", 400, 400, 250, 50 );
         forFaculty.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -117,6 +108,8 @@ public class admin extends JFrame {
                 stuAd.forStudent.setVisible(true);
             }
         });
+
+
     }
 
     public static JButton makeNewJButton(String labelText ,int x, int y, int dx, int dy) {

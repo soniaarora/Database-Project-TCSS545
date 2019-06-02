@@ -231,8 +231,8 @@ public class college_system {
         JTextField label = new JTextField();
 
         label.setForeground(Color.BLACK);
-        label.setFont(new Font("Serif", Font.LAYOUT_LEFT_TO_RIGHT ,18));
-        label.setHorizontalAlignment(JLabel.HORIZONTAL);
+        label.setFont(new Font("Serif", Font.PLAIN,18));
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setBounds(x, y, dx, dy);
         frame.add(label);
 
@@ -244,7 +244,7 @@ public class college_system {
 
         label.setForeground(Color.BLACK);
         label.setFont(new Font("Serif", Font.BOLD, 20));
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setBounds(x, y, dx, dy);
         frame.add(label);
         return label;
@@ -255,7 +255,7 @@ public class college_system {
 
         label.setForeground(Color.BLACK);
         label.setFont(new Font("Serif", Font.BOLD, 20));
-        label.setHorizontalAlignment(JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.LEFT);
         label.setBounds(x, y, dx, dy);
         frame.add(label);
         return label;

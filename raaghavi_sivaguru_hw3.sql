@@ -100,5 +100,3 @@ begin
 end$
 delimiter ;
 
-
-
