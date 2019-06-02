@@ -1,4 +1,6 @@
-package college.dbProject.student;
+package college.dbProject.faculty;
+import college.dbProject.faculty.FacultyPage;
+
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 

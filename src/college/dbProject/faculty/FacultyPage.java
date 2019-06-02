@@ -1,6 +1,7 @@
-package college.dbProject.student;
+package college.dbProject.faculty;
 import college.dbProject.main.BackgroundPanel;
-import college.dbProject.student.ItemChangeListener;
+import college.dbProject.faculty.ItemChangeListener;
+import college.dbProject.main.college_system;
 import college.dbProject.student.MyTableModel;
 
 import java.awt.*;
@@ -197,6 +198,12 @@ public class FacultyPage {
         actionButton.setBounds(650, 100, 225, 70);
         frame.add(actionButton);
 
+        JButton cancel = new JButton("Cancel");
+        cancel.setForeground(Color.BLACK);
+        cancel.setFont(new Font("Serif", Font.BOLD, 20));
+        cancel.setHorizontalAlignment(JLabel.CENTER);
+        cancel.setBounds(650, 250, 200, 70);
+        frame.add(cancel);
 
         actionButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
@@ -270,6 +277,21 @@ public class FacultyPage {
                     }
                 });
 
+
+
+            }
+        });
+
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                frame.dispose();
+                college_system col = new college_system();
+                col.frame.setVisible(true);
+
+
+
             }
         });
     }
@@ -302,10 +324,6 @@ public class FacultyPage {
 
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
-//        DefaultTableCellRenderer col5Renderer = new DefaultTableCellRenderer();
-//        col5Renderer.setToolTipText("Click to select a quantity");
-//        col5Renderer.setHorizontalAlignment(SwingConstants.CENTER);
-
         TableColumn column0 = table.getColumnModel().getColumn(0);
         column0.setPreferredWidth(100);
         column0.setHeaderValue("<html><b>Student ID</b></html>");
@@ -330,9 +348,6 @@ public class FacultyPage {
         column4.setPreferredWidth(55);
         column4.setCellRenderer(centerRenderer);
         column4.setHeaderValue("<html><b>Grade</b></html>");
-
-
-        //column5.setHeaderValue("<html><b>&nbsp;&nbsp;Select<br>Quantity</b></html>");
 
         final JComboBox<String> comboBox = new JComboBox<String>();
 
@@ -409,8 +424,7 @@ public class FacultyPage {
                         MyTableModel.tableData[rowsInTable][2] = coursesRS.getString("FirstName");
                         MyTableModel.tableData[rowsInTable][3] = coursesRS.getString("CourseNumber");
                         MyTableModel.tableData[rowsInTable][4] = coursesRS.getString("Grade");
-                        //MyTableModel.tableData[rowsInTable][3] = coursesRS.getString("CourseID");
-                        //MyTableModel.tableData[rowsInTable][4] = coursesRS.getString("Grade");
+
                         rowsInTable++;
                     }
                     for (int m = rowsInTable; m < 40; m++) {

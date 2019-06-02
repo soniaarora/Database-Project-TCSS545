@@ -116,7 +116,11 @@ public class AdminFaculty {
                 String Lname = lname.getText();
                 String Email = email.getText();
                 String pswrd = Fname;
+
+                //Create credentials for faculties.
                 String query1 = "INSERT INTO Credentials VALUES ( " + id + ", '" + pswrd + "');";
+
+                //Create credentials for faculties
                 String query2 = "INSERT INTO Faculty VALUES ( " + id + ", '" + Fname + "', '" + Lname + "', '" + Email + "');";
 
 
@@ -145,18 +149,17 @@ public class AdminFaculty {
             public void actionPerformed(ActionEvent e) {
 
                 forFaculty.dispose();
-                college_system coll = new college_system();
-                coll.frame.setVisible(true);
+                admin coll = new admin();
+                coll.adm.setVisible(true);
 
             }
         });
 
     }
 
+
     public static String generatePassword() {
-//        byte[] array = new byte[7]; // length is bounded by 7
-//        new Random().nextBytes(array);
-//        String generatedString = new String(array, Charset.forName("UTF-8"));
+//
 
         int length = 8;
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -214,6 +217,7 @@ public class AdminFaculty {
         return background;
     }
 
+    //Set background image
     private static void setBackgroundImage() {
         try {
             String relativePath = "images\\wallpaper.jpg";

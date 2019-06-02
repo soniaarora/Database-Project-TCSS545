@@ -72,9 +72,6 @@ public class StudentAdmin {
 
         final int screenHeight = SCREEN_SIZE.height;
         final int screenWidth = SCREEN_SIZE.width;
-
-
-
         forStudent.setSize(200, 200);
         forStudent.setBounds(0, 0, 1000, 625);
         forStudent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,7 +84,7 @@ public class StudentAdmin {
         makeNewJLabel("Last Name", 220, 240, 200, 50);
         makeNewJLabel("Address", 220, 310, 200, 50);
         makeNewJLabel("Email", 220, 380, 200, 50);
-//        makeNewJLabel("Password", 220, 310, 220, 50);
+
 
         JTextField Id = makeNewJTextField(460, 100, 200, 30);
         JTextField fname = makeNewJTextField(460, 170, 200, 30);
@@ -107,8 +104,10 @@ public class StudentAdmin {
                 String Email = email.getText();
                 String pswrd = Fname;
 
+                //Create credentials for Students
                 String query1 = "INSERT INTO Credentials VALUES ( " + id + ", '" + pswrd + "');";
 
+                //Create profile for students.
                 String query2 = "INSERT INTO Student VALUES ( " + id + ", '" + Fname + "', '" + Lname + "', '" + Add + "','" + Email + "');";
 
 
@@ -137,8 +136,9 @@ public class StudentAdmin {
             public void actionPerformed(ActionEvent e) {
 
                 forStudent.dispose();
-                college_system coll = new college_system();
-                coll.frame.setVisible(true);
+
+                admin coll = new admin();
+                coll.adm.setVisible(true);
 
             }
         });
@@ -146,11 +146,6 @@ public class StudentAdmin {
     }
 
     public static String generatePassword() {
-//        byte[] array = new byte[7]; // length is bounded by 7
-//        new Random().nextBytes(array);
-//        String generatedString = new String(array, Charset.forName("UTF-8"));
-//
-//        return generatedString;
 
 
         int length = 8;

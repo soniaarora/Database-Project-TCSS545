@@ -2,7 +2,7 @@ package college.dbProject.main;
 
 
 import college.dbProject.admin.admin;
-import college.dbProject.student.FacultyPage;
+import college.dbProject.faculty.FacultyPage;
 import college.dbProject.student.Student;
 
 import java.awt.*;
@@ -100,20 +100,6 @@ public class college_system {
     private void initialize() {
 
 
-//        frame.setIconImage(new ImageIcon("images/").getImage());
-////        frame.setResizable(false);
-//        frame.setSize(200,200);
-//          frame.setBounds(0, 0, 1000, 625);
-//        frame.setLocationByPlatform(true);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//        //adds Background Image to the JFrame
-////       frame.setContentPane(new BackgroundPanel(readImageFile()));
-//
-//        //set the layout for the frame
-//        frame.setLayout(null);
-
-
         frame.setSize(200, 200);
         frame.setBounds(0, 0, 1000, 625);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -171,8 +157,7 @@ public class college_system {
                            admin ad = new admin();
                            frame.setVisible(false);
                            ad.adm.setVisible(true);
-                           //ad.setVisible(true);
-                             //admin.main(null);
+
 
                          }
                          if(roleSelected == "student"){
@@ -201,7 +186,10 @@ public class college_system {
 //
                      } else {
 
-                         System.out.println("Login Failed");
+                         JOptionPane.showMessageDialog(frame,
+                                 "Login Failed",
+                                 "Error",
+                                 JOptionPane.ERROR_MESSAGE);
                      }
                  }
                }
