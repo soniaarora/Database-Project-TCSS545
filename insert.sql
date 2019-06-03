@@ -58,3 +58,18 @@ insert into StudentCourses values (30001, 'TCSS545', 'Spring 2019');
 insert into StudentCourses values (30001, 'TCSS700', 'Spring 2019');
 insert into StudentCourses values (30001, 'TCSS555', 'Spring 2018');
 insert into StudentCourses values (30001, 'TCSS562', 'Spring 2018');
+
+insert into Credentials values (888, 'Lisa')
+insert into Credentials values (999, 'John')
+
+insert into Faculty values(888, 'Lisa', 'Moore', '999@gmail.com')
+insert into Faculty values(999, 'John', 'Smith', '999@gmail.com')
+
+insert into FacultyCourses values (888, 'TCSS543');
+insert into FacultyCourses values (888, 'TCSS600');
+insert into FacultyCourses values (888, 'TCSS558');
+insert into FacultyCourses values (888, 'TCSS551');
+insert into FacultyCourses values (999, 'TCSS562');
+insert into FacultyCourses values (999, 'TCSS555');
+insert into FacultyCourses values (999, 'TCSS545');
+insert into FacultyCourses values (999, 'TCSS700');
