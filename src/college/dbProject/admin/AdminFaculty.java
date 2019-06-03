@@ -191,21 +191,6 @@ public class AdminFaculty {
     }
 
 
-    public static String generatePassword() {
-//
-
-        int length = 8;
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + "abcdefghijklmnopqrstuvwxyz"
-                + "0123456789";
-        String generatedString = new Random().ints(length, 0, chars.length())
-                .mapToObj(i -> "" + chars.charAt(i))
-                .collect(Collectors.joining());
-
-        return generatedString;
-    }
-
-
 
     public static void makeNewJLabel (String labelText, int x, int y, int dx, int dy) {
         JLabel label = new JLabel(labelText);
