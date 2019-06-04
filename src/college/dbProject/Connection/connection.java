@@ -27,10 +27,10 @@ public class connection {
         String username = "root";
         String password = "root";
         try {
-            //connect = DriverManager.getConnection(host, username, password);
-            conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost:3306/collegemanagementsystemdb?" +
-                            "user=root&password=root");
+            conn = DriverManager.getConnection(host, username, password);
+//            conn =
+//                    DriverManager.getConnection(host +
+//                            "user=root&password=root");
 
             // Do something with the Connection
         } catch (SQLException ex) {

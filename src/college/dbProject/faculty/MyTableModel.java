@@ -1,5 +1,5 @@
 
-package college.dbProject.student;
+package college.dbProject.faculty;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;

@@ -2,7 +2,7 @@ package college.dbProject.faculty;
 import college.dbProject.main.BackgroundPanel;
 import college.dbProject.faculty.ItemChangeListener;
 import college.dbProject.main.college_system;
-import college.dbProject.student.MyTableModel;
+import college.dbProject.faculty.MyTableModel;
 
 import java.awt.*;
 
